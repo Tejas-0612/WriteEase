@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { Outlet } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 import authService from "./appwrite/auth";
+
 import { login, logout } from "./store/authSlice";
 import { Header, Footer } from "./components";
 
@@ -24,8 +27,9 @@ function App() {
   return !loading ? (
     <div className="min-h-screen">
       <Header />
-      <h1 className="font-semibold">Write Ease</h1>
+      <Outlet />
       <Footer />
+      <Toaster position="bottom-center" reverseOrder={false} />
     </div>
   ) : null;
 }

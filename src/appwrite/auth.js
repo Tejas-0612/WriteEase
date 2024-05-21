@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import config from "../config/config.js";
 import { Account, Client, ID } from "appwrite";
 
@@ -27,14 +28,17 @@ export class AuthService {
         return userAccount;
       }
     } catch (error) {
+      toast.error(error.message);
       console.log("Appwrite service :: createAccount :: error", error);
     }
   }
 
   async login({ email, password }) {
     try {
+      console.log(email, password);
       return await this.account.createEmailPasswordSession(email, password);
     } catch (error) {
+      toast.error(error.message);
       console.log("Appwrite service :: login :: error", error);
     }
   }
@@ -43,6 +47,7 @@ export class AuthService {
     try {
       return await this.account.get();
     } catch (error) {
+      toast.error(error.message);
       console.log("Appwrite service :: getCurrentUser :: error", error);
     }
     return null;
@@ -53,6 +58,7 @@ export class AuthService {
       await this.account.deleteSessions();
       return true;
     } catch (error) {
+      toast.error(error.message);
       console.log("Appwrite service :: logout :: error", error);
     }
   }

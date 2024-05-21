@@ -1,5 +1,6 @@
 import { Client, Databases, ID, Query, Storage } from "appwrite";
 import config from "../config/config";
+import toast from "react-hot-toast";
 
 export class Service {
   client = new Client();
@@ -14,7 +15,15 @@ export class Service {
     this.bucket = new Storage(this.client);
   }
 
-  async createPost({ title, slug, content, FeaturedImage, status, userId }) {
+  async createPost({
+    title,
+    slug,
+    content,
+    FeaturedImage,
+    status,
+    userId,
+    author,
+  }) {
     try {
       return await this.databases.createDocument(
         config.appwriteDatabaseId,
@@ -23,12 +32,15 @@ export class Service {
         {
           title,
           content,
+          body: content,
           FeaturedImage,
           status,
           userId,
+          author,
         }
       );
     } catch (error) {
+      toast.error(error.message);
       console.log("Appwrite serive :: createPost :: error", error);
     }
   }
@@ -47,6 +59,7 @@ export class Service {
         }
       );
     } catch (error) {
+      toast.error(error.message);
       console.log("Appwrite serive :: updatePost :: error", error);
     }
   }
@@ -72,6 +85,7 @@ export class Service {
         slug
       );
     } catch (error) {
+      toast.error(error.message);
       console.log("Appwrite serive :: getPost :: error", error);
     }
   }
@@ -111,6 +125,18 @@ export class Service {
 
   getFilePreview(fileId) {
     return this.bucket.getFilePreview(config.appwriteBucketId, fileId);
+  }
+
+  async getUserById(userId) {
+    try {
+      return await this.databases.getDocument(
+        config.appwriteDatabaseId,
+        config.appwriteCollectionId,
+        userId
+      );
+    } catch (error) {
+      console.log("Appwrite service :: getCurrentUserById :: error", error);
+    }
   }
 }
 
