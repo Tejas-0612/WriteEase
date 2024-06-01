@@ -1,8 +1,6 @@
-# WriteEase
-
 <div align="center">
   <br />
-    <a href="https://youtu.be/O5cmLDVTgAs?feature=shared" target="_blank">
+    <a href="https://write-ease-lilac.vercel.app/" target="_blank">
       <img src="./src/assets/LOGO2.png" alt="Project Banner">
     </a>
   <br />
@@ -11,7 +9,7 @@
 
 </div>
 
-### <span name="demo">🚀 Demo</span> - 🔗<a href="https://instant-eats.vercel.app/" target="_blank">click here</a>
+### <span name="demo">🚀 Demo</span> - 🔗<a href="https://write-ease-lilac.vercel.app/" target="_blank">click here</a>
 
 ## 📋 <a name="table">Table of Contents</a>
 
