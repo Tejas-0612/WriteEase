@@ -50,7 +50,7 @@ const Header = () => {
               item.active ? (
                 <li key={item.name}>
                   <button
-                    className="inline-bock md:px-6 md:py-2 duration-200 hover:bg-gray-100 text-xs md:text-base focus:font-bold    md:focus:bg-[#e5e5e5] focus:shadow-lg rounded-3xl font-semibold"
+                    className="inline-bock md:px-6 md:py-2 duration-200 hover:bg-gray-100 text-xs md:text-base focus:font-bold md:focus:bg-[#e5e5e5] focus:shadow-lg rounded-3xl font-semibold"
                     onClick={() => navigate(item.slug)}
                   >
                     {item.name}
