@@ -5,13 +5,14 @@ import { useSelector } from "react-redux";
 import { Button, Container } from "../components";
 import parse from "html-react-parser";
 import { PostShimmer } from "../components/Shimmer";
+
 const Post = () => {
   const [post, setPost] = useState(null);
   const { slug } = useParams();
   const navigate = useNavigate();
 
   const userData = useSelector((state) => state.auth.userData);
-  console.log(userData);
+
   const isAuthor = post && userData ? post.userId === userData.$id : false;
 
   useEffect(() => {

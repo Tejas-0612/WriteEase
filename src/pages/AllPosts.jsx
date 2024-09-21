@@ -8,12 +8,11 @@ import { Navigate } from "react-router-dom";
 const AllPosts = () => {
   const [posts, setPosts] = useState([]);
   const userData = useSelector((state) => state.auth.userData);
-  console.log(userData);
+
   useEffect(() => {
     AppwriteService.getPosts([]).then((posts) => {
       if (posts) {
         setPosts(posts.documents);
-        console.log(posts);
       }
     });
   }, []);

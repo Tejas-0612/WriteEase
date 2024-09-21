@@ -57,7 +57,6 @@ export default function PostForm({ post }) {
           userId: userData?.$id,
           author: userData?.name,
         });
-        console.log(dbPost);
         setLoading(false);
         toast.success("Posted successfully");
         if (dbPost) {
