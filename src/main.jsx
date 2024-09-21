@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
@@ -7,13 +7,18 @@ import "./index.css";
 import App from "./App.jsx";
 import store from "./store/store.js";
 import Home from "./pages/Home.jsx";
-import Post from "./pages/Post.jsx";
 import Login from "./pages/Login.jsx";
 import SignUp from "./pages/Signup.jsx";
-import AddPost from "./pages/AddPost.jsx";
-import AllPosts from "./pages/AllPosts.jsx";
-import EditPost from "./pages/EditPost.jsx";
 import { AuthLayout } from "./components/index.js";
+import Shimmer, {
+  PostFormShimmer,
+  PostShimmer,
+} from "./components/Shimmer.jsx";
+
+const Post = lazy(() => import("./pages/Post.jsx"));
+const AddPost = lazy(() => import("./pages/AddPost.jsx"));
+const AllPosts = lazy(() => import("./pages/AllPosts.jsx"));
+const EditPost = lazy(() => import("./pages/EditPost.jsx"));
 
 const router = createBrowserRouter([
   {
@@ -44,7 +49,9 @@ const router = createBrowserRouter([
         path: "/all-posts",
         element: (
           <AuthLayout authenticated={true}>
-            <AllPosts />
+            <Suspense fallback={<Shimmer />}>
+              <AllPosts />
+            </Suspense>
           </AuthLayout>
         ),
       },
@@ -52,8 +59,9 @@ const router = createBrowserRouter([
         path: "/add-post",
         element: (
           <AuthLayout>
-            {" "}
-            <AddPost />
+            <Suspense fallback={<PostFormShimmer />}>
+              <AddPost />
+            </Suspense>
           </AuthLayout>
         ),
       },
@@ -61,14 +69,19 @@ const router = createBrowserRouter([
         path: "/edit-post/:slug",
         element: (
           <AuthLayout>
-            {" "}
-            <EditPost />
+            <Suspense fallback={<PostFormShimmer />}>
+              <EditPost />
+            </Suspense>
           </AuthLayout>
         ),
       },
       {
         path: "/post/:slug",
-        element: <Post />,
+        element: (
+          <Suspense fallback={<PostShimmer />}>
+            <Post />
+          </Suspense>
+        ),
       },
     ],
   },

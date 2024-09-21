@@ -1,4 +1,3 @@
-import React from "react";
 import Container from "./container/Container";
 
 const ShimmerCard = () => {
@@ -46,6 +45,24 @@ export const PostShimmer = () => {
           <div className="w-full my-10 mb-6 flex flex-col justify-center gap-2">
             <div className="w-[60%] mx-auto bg-gray-300 animate-pulse h-8 border-2"></div>
             <div className="w-[30%] mx-auto bg-gray-300 animate-pulse h-4 border-2"></div>
+          </div>
+        </div>
+      </Container>
+    </div>
+  );
+};
+
+export const PostFormShimmer = () => {
+  return (
+    <div className="py-8 bg-slate-100">
+      <Container>
+        <div className="bg-white w-full h-full  shadow-xl px-10 py-4 rounded-md">
+          <div className="my-20 space-y-10">
+            <div className="mx-auto bg-gray-300 animate-pulse h-10 border-2 rounded-lg"></div>
+            <div className="mx-auto bg-gray-300 animate-pulse h-10 border-2 rounded-lg"></div>
+            <div className="mx-auto bg-gray-300 animate-pulse h-[400px] border-2 rounded-lg"></div>
+            <div className="mx-auto bg-gray-300 animate-pulse h-10 border-2 rounded-lg"></div>
+            <div className="mx-auto bg-gray-300 animate-pulse h-10 border-2 rounded-lg"></div>
           </div>
         </div>
       </Container>
